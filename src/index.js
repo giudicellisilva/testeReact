@@ -4,12 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Criptografia from './components/Criptografia';
+import File from './components/File';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
     <Criptografia />
+    {/* <File /> */}
 
   </React.StrictMode>
 );

@@ -5,6 +5,8 @@ import Excel from "exceljs";
 const App = props =>{
 
     const [file, setFile] = useState();
+
+    const [result, setResult] = useState([]);
     
     const headExel = () =>{
 
@@ -22,7 +24,10 @@ const App = props =>{
             console.log(workbook, 'workbook instance')
             workbook.eachSheet((sheet, id) => {
             sheet.eachRow((row, rowIndex) => {
-            console.log(row.values, rowIndex)
+            console.log(row.values, rowIndex);
+            const temp = result;
+            temp.push([row.values[1], row.values[2]]);
+            setResult(temp);
         })
       })
     })
@@ -35,6 +40,14 @@ const App = props =>{
         <div className="dropzone">
             <input className="dropzone__content" type="file" onChange={ (e) => setFile(e.target.files[0]) } />
             <button onClick={headExel}>Ler Exel</button>
+            <form>
+                {result.map( (j) => {
+                            <tr key={j[0]}>
+                                <td>{j[0]}</td>
+                                <td>{j[1]}</td>
+                            </tr>
+                })}
+            </form>
         </div>
     )
 }
